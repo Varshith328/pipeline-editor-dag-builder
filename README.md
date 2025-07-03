@@ -167,64 +167,6 @@ A pipeline is considered valid when:
 **Problem**: Automatically positioning nodes for better visualization
 **Solution**: Integrated Dagre algorithm with ReactFlow's positioning system
 
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Demo
-
-🔗 **Live Demo**: [Your deployed URL here]
-
-### Screenshots
-
-#### Main Interface
-![Main Interface](screenshots/main-interface.png)
-
-#### DAG Validation
-![DAG Validation](screenshots/dag-validation.png)
-
-#### Auto Layout
-![Auto Layout](screenshots/auto-layout.png)
-
-## Development Notes
-
-### Code Quality
-- ESLint configuration for code consistency
-- Prettier for code formatting
-- Comprehensive error handling
-- TypeScript-ready structure (can be migrated easily)
-
-### Performance Optimizations
-- Memoized validation functions
-- Optimized re-renders with React.memo
-- Efficient state updates
-- Debounced auto-save functionality
-
-### Future Enhancements
-- [ ] Undo/Redo functionality
-- [ ] Node templates and categories
-- [ ] Export to different formats (PNG, SVG)
-- [ ] Import from JSON/XML
-- [ ] Multi-selection with drag box
-- [ ] Node grouping and subgraphs
-- [ ] Real-time collaboration
-- [ ] Plugin system for custom nodes
-
 ## Support
 
 For support, please open an issue in the GitHub repository or contact [your-email@example.com].
