@@ -1,70 +1,234 @@
-# Getting Started with Create React App
+# Pipeline Editor - DAG Builder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based Pipeline Editor that allows users to visually create and manage Directed Acyclic Graphs (DAGs). This tool simulates how real-time data pipelines or processing workflows are constructed using interconnected nodes.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### Core Features
+- ✅ **Add Nodes**: Create new nodes with custom labels
+- ✅ **Draw Edges**: Connect nodes with directional arrows
+- ✅ **Delete Elements**: Remove nodes or edges using the delete key
+- ✅ **DAG Validation**: Real-time validation of graph structure
+- ✅ **Auto Layout**: Automatically arrange nodes for better visualization
+- ✅ **JSON Preview**: View the graph structure in JSON format
 
-### `npm start`
+### Advanced Features
+- 🎨 **Custom Node Types**: Different node styles and colors
+- 📱 **Responsive Design**: Works on desktop and mobile
+- ⌨️ **Keyboard Shortcuts**: Efficient workflow with hotkeys
+- 🎯 **Connection Rules**: Smart edge validation
+- 📊 **Graph Statistics**: Node and edge counts
+- 💾 **Export Functionality**: Export DAG structure as JSON
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation & Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
 
-### `npm test`
+### Quick Start
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd pipeline-editor-dag-builder
+   ```
 
-### `npm run build`
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Build for Production
+```bash
+npm run build
+```
 
-### `npm run eject`
+### Deploy to Vercel
+```bash
+npm install -g vercel
+vercel --prod
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Project Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+pipeline-editor-dag-builder/
+├── public/
+│   ├── index.html
+│   └── manifest.json
+├── src/
+│   ├── components/
+│   │   ├── CustomNode.js          # Custom node component
+│   │   ├── ControlPanel.js        # Control buttons panel
+│   │   ├── ValidationPanel.js     # DAG validation display
+│   │   └── JsonPreview.js         # JSON structure preview
+│   ├── hooks/
+│   │   ├── useDag.js              # DAG state management
+│   │   └── useKeyboard.js         # Keyboard shortcuts
+│   ├── utils/
+│   │   ├── dagValidation.js       # DAG validation logic
+│   │   └── autoLayout.js          # Auto layout with Dagre
+│   ├── constants/
+│   │   └── index.js               # Application constants
+│   ├── styles/
+│   │   └── App.css                # Main stylesheet
+│   ├── App.js                     # Main application component
+│   └── index.js                   # Application entry point
+├── package.json
+└── README.md
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage Guide
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Adding Nodes
+1. Click the "Add Node" button
+2. Enter a name for your node
+3. Choose a node type (optional)
+4. Click "Add" to create the node
 
-## Learn More
+### Creating Connections
+1. Drag from the **right handle** (source) of one node
+2. Drop on the **left handle** (target) of another node
+3. The connection will be created if it follows DAG rules
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Deleting Elements
+- **Select nodes/edges** by clicking on them
+- **Press Delete key** to remove selected elements
+- **Use the Clear All button** to remove everything
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Keyboard Shortcuts
+- `Delete` / `Backspace`: Delete selected elements
+- `Ctrl+A`: Select all elements
+- `Ctrl+L`: Apply auto layout
+- `Escape`: Clear selection
 
-### Code Splitting
+### DAG Validation Rules
+A pipeline is considered valid when:
+- ✅ Has at least 2 nodes
+- ✅ Contains no cycles
+- ✅ All nodes are connected to at least one edge
+- ✅ No self-loops exist
+- ✅ All edges follow correct direction (source → target)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Technical Implementation
 
-### Analyzing the Bundle Size
+### Key Libraries Used
+- **React 18**: Main framework
+- **ReactFlow**: Graph visualization and interaction
+- **Dagre**: Automatic graph layout algorithm
+- **React Hooks**: State management and side effects
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Architecture Decisions
 
-### Making a Progressive Web App
+1. **Component-Based Architecture**: 
+   - Modular components for reusability
+   - Custom hooks for business logic separation
+   - Utility functions for pure logic
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+2. **State Management**:
+   - Custom `useDag` hook for centralized DAG state
+   - React's built-in state management
+   - No external state management library needed
 
-### Advanced Configuration
+3. **Validation Strategy**:
+   - Real-time validation on every change
+   - DFS algorithm for cycle detection
+   - Comprehensive rule checking
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+4. **Layout Algorithm**:
+   - Dagre library for automatic positioning
+   - Top-down hierarchical layout
+   - Configurable spacing and margins
 
-### Deployment
+## Challenges & Solutions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Challenge 1: Cycle Detection
+**Problem**: Detecting cycles in a directed graph efficiently
+**Solution**: Implemented DFS with recursion stack tracking
 
-### `npm run build` fails to minify
+### Challenge 2: Real-time Validation
+**Problem**: Validating DAG structure on every change without performance issues
+**Solution**: Optimized validation function with early returns and memoization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Challenge 3: Edge Connection Rules
+**Problem**: Preventing invalid connections (self-loops, wrong directions)
+**Solution**: Custom validation in connection handler with clear user feedback
+
+### Challenge 4: Auto Layout
+**Problem**: Automatically positioning nodes for better visualization
+**Solution**: Integrated Dagre algorithm with ReactFlow's positioning system
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Demo
+
+🔗 **Live Demo**: [Your deployed URL here]
+
+### Screenshots
+
+#### Main Interface
+![Main Interface](screenshots/main-interface.png)
+
+#### DAG Validation
+![DAG Validation](screenshots/dag-validation.png)
+
+#### Auto Layout
+![Auto Layout](screenshots/auto-layout.png)
+
+## Development Notes
+
+### Code Quality
+- ESLint configuration for code consistency
+- Prettier for code formatting
+- Comprehensive error handling
+- TypeScript-ready structure (can be migrated easily)
+
+### Performance Optimizations
+- Memoized validation functions
+- Optimized re-renders with React.memo
+- Efficient state updates
+- Debounced auto-save functionality
+
+### Future Enhancements
+- [ ] Undo/Redo functionality
+- [ ] Node templates and categories
+- [ ] Export to different formats (PNG, SVG)
+- [ ] Import from JSON/XML
+- [ ] Multi-selection with drag box
+- [ ] Node grouping and subgraphs
+- [ ] Real-time collaboration
+- [ ] Plugin system for custom nodes
+
+## Support
+
+For support, please open an issue in the GitHub repository or contact [your-email@example.com].
+
+---
+
+**Built with ❤️ using React and ReactFlow**
